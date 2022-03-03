@@ -1,0 +1,77 @@
+<html>
+
+<body>
+    <pre>
+        Given an unsorted integer array nums, return the smallest missing positive integer.
+
+        You must implement an algorithm that runs in O(n) time and uses constant extra space.
+
+        Example 1:
+        Input: nums = [1,2,0]
+        Output: 3
+
+        Example 2:
+        Input: nums = [3,4,-1,1]
+        Output: 2   
+
+        Example 3:
+
+        Input: nums = [7,8,9,11,12]
+        Output: 1
+    </pre>
+    <hr>
+    <script>
+        /**
+        * @param {number[]} nums
+        * @return {number}
+        */
+        var firstMissingPositive = function (nums) {
+            let missingNumber = 1;
+            let firstPositiveFound = false;
+            let firstPositiveNumber = -1;
+            let missingFound = false;
+            let n = nums.length;
+            let nums2 = nums.sort(function (a, b) { return a - b });
+            let i = 0;
+            if (nums2[i] > 1) {
+                missingNumber = 1
+            }
+            else {
+                for (i = 0; i < n; i++) {
+                    if (nums2[i] < 1)
+                        continue
+                    else if (firstPositiveFound == false && nums2[i] > 0) {
+                        console.log('a');
+                        firstPositiveFound = true
+                        firstPositiveNumber = nums2[i]
+                        if (firstPositiveNumber > 1) {
+                            console.log('b');
+                            missingNumber = 1;
+                            missingFound = true
+                            break
+                        }
+                    }
+                    else if (i > 0 && nums2[i] - nums2[i - 1] > 1) {
+                        console.log('c');
+                        missingNumber = nums2[i - 1] + 1;
+                        missingFound = true
+                        break;
+                    }
+                }
+                if (!missingFound && nums2[n - 1] >= 0) {
+                    console.log('d');
+
+                    missingNumber = nums2[n - 1] + 1;
+                }
+            }
+
+            return missingNumber
+        };
+
+        var nums = [2, 1];
+        console.log(firstMissingPositive(nums))
+    </script>
+
+</body>
+
+</html>

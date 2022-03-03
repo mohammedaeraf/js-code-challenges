@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Turing 2 - Valid Parenthesis</title>
+    <script>
+        function isValid(s) {
+            let valid = true;
+            let openBrackets = ["(", "{", "["];
+            let stck = [];  // stack that holds last open brackets
+            let ch = null;
+            let b = null;
+
+            for (let i = 0; i < s.length; i++) {
+                ch = s.charAt(i);
+                // if open bracket, add to stack
+                if (openBrackets.includes(ch)) {
+                    stck.push(ch);
+                }
+                // check if it closes the last open bracket
+                else {
+                    if (stck.length < 1) return false;
+                    b = stck[stck.length - 1]; // get last open bracket from stack
+                    // if it closes last open braces, pop out the last open brace from stck
+                    if ( (ch === ")" && b === "(") || (ch === "]" && b === "[") || (ch === "}" && b === "{") ) {
+                        stck.pop(); 
+                    }
+                    else {
+                        return false;
+                    }
+                } 
+            } // end of for
+
+            // if there are still open brackets return false
+            return stck.length ? false : true;
+        }
+
+        console.log(isValid("{[]}"));
+    </script>
+    <script>
+        // function isValidParenthesis(s) {
+        //     let valid = true;
+        //     let openBrackets = ["(", "{", "["];
+        //     let closeBrackets = [")", "}", "]"];
+        //     let stck = [];  // stack that holds last open brackets
+        //     let count = 0;
+        //     let ch = null;
+        //     let stckBracket = null;
+        //     if (s.length % 2 !== 0) {
+        //         valid = false;
+        //     }
+        //     else {
+        //         for (let i = 0; i < s.length; i++) {
+        //             ch = s.charAt(i);
+        //             if (openBrackets.includes(ch)) {
+        //                 stck.push(ch);
+        //                 count++;
+        //             }
+        //             else if (closeBrackets.includes(ch)) {
+        //                 if (count == 0) {
+        //                     valid = false;
+        //                     break;
+        //                 }
+        //                 stckBracket = stck[count - 1];
+        //                 if (ch === ")" && stckBracket !== "(") {
+        //                     valid = false;
+        //                     break;
+        //                 }
+        //                 else if (ch === "]" && stckBracket !== "[") {
+        //                     valid = false;
+        //                     break;
+        //                 }
+        //                 else if (ch === "}" && stckBracket !== "{") {
+        //                     valid = false;
+        //                     break;
+        //                 }
+        //                 else { // valid brace found
+        //                     stck.pop(); // remove last open
+        //                     count--;
+        //                 }
+        //             } // invalid chars
+        //             else {
+        //                 valid = false;
+        //                 break;
+        //             }
+        //         } // end of for
+        //         if (stck.count > 0) valid = false;
+        //     }
+
+        //     return valid ? "valid" : "invalid";
+        // }
+
+        // let s = "{[]}"
+        // console.log(isValidParenthesis(s));
+    </script>
+    <script>
+        // checks just for last open
+        // function isValid(s) {
+        //     let valid = true;
+        //     let n = s.length;
+        //     let ch = null;
+        //     let odd = false;
+        //     for (let i = 0; i < n; i++) {
+        //         ch = s.charAt(i);
+        //         odd = (i + 1) % 2 !== 0 ? true : false;
+
+        //         if (odd) {
+        //             if (ch === ")" || ch === "]" || ch === "}") {
+        //                 valid = false;
+        //                 break;
+        //             }
+        //         }
+        //         else {
+        //             if (ch === "(" || ch === "[" || ch === "{") {
+        //                 valid = false;
+        //                 break;
+        //             }
+        //             else if (ch === ")") {
+        //                 let prev = s.charAt(i - 1);
+        //                 if (prev !== "(") {
+        //                     valid = false;
+        //                     break
+        //                 }
+        //             }
+        //             else if (ch === "]") {
+        //                 let prev = s.charAt(i - 1);
+        //                 if (prev !== "[") {
+        //                     valid = false;
+        //                     break
+        //                 }
+        //             }
+        //             else if (ch === "}") {
+        //                 let prev = s.charAt(i - 1);
+        //                 if (prev !== "{") {
+        //                     valid = false;
+        //                     break
+        //                 }
+        //             }
+        //             else {
+        //                 valid = false;
+        //                 break;
+        //             }
+        //         }
+        //     }
+
+
+        //     return valid ? "valid" : "invalid";
+        // }
+
+    </script>
+</head>
+
+<body>
+    <img src="turing-2.png" alt="">
+</body>
+
+</html>

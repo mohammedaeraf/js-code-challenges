@@ -1,0 +1,190 @@
+<html>
+
+<body>
+    <pre>
+        Given an m x n matrix, return all elements of the matrix in spiral order.
+
+        Example 1:
+        Input: matrix = [[1,2,3],[4,5,6],[7,8,9]]
+        Output: [1,2,3,6,9,8,7,4,5]
+
+        Example 2:
+        Input: matrix = [[1,2,3,4],[5,6,7,8],[9,10,11,12]]
+        Output: [1,2,3,4,8,12,11,10,9,5,6,7]
+    </pre>
+    <hr>
+    <script>
+        /**
+        * @param {number[][]} matrix
+        * @return {number[]}
+        */
+
+        var spiralOrder = function (matrix) {
+            let res = new Array()
+
+            if (matrix.length == 0) {
+                return res;
+            }
+
+            let rowBegin = 0;
+            let rowEnd = matrix.length-1;
+            let colBegin = 0;
+            let colEnd = matrix[0].length - 1;
+
+            while (rowBegin <= rowEnd && colBegin <= colEnd) {
+                // Traverse Right
+                for (let j = colBegin; j <= colEnd; j ++) {
+                    res.push(matrix[rowBegin][j]);
+                }
+                rowBegin++;
+
+                // Traverse Down
+                for (let j = rowBegin; j <= rowEnd; j ++) {
+                    res.push(matrix[j][colEnd]);
+                }
+                colEnd--;
+
+                if (rowBegin <= rowEnd) {
+                    // Traverse Left
+                    for (let j = colEnd; j >= colBegin; j --) {
+                        res.push(matrix[rowEnd][j]);
+                    }
+                }
+                rowEnd--;
+
+                if (colBegin <= colEnd) {
+                    // Traverse Up
+                    for (let j = rowEnd; j >= rowBegin; j --) {
+                        res.push(matrix[j][colBegin]);
+                    }
+                }
+                colBegin ++;
+            }
+
+            return res;
+           
+        }
+
+        var matrix = [[1, 2, 3], [4, 5, 6], [7, 8, 9]]
+        // var matrix = [[1,2,3,4],[5,6,7,8],[9,10,11,12]]
+        var spiralMatrix = spiralOrder(matrix)
+        console.log(spiralMatrix)
+
+
+        // My Solution
+        // var spiralOrder = function (matrix) {
+        //     let spiralArr = new Array()
+        //     let m = matrix.length;
+        //     let n = matrix[0].length;
+        //     let tot = m * n;
+        //     let count = 0;
+        //     let lastRowFound = false;
+        //     let round = 0;
+        //     let el = -1000;
+
+        //     while (count < tot) {
+                
+        //         console.log('L to R');
+        //         for (j = 0; j < n-1-round; j++) {
+        //             if (count < tot) {   
+        //                 el = matrix[0+round][j]; 
+        //                 spiralArr.push(el);
+        //                 count++
+        //                 console.log(el);
+        //             }
+        //             else {
+        //                 break;
+        //             }
+        //         }
+                
+        //         console.log('Top to Bottom');
+        //         for (i = 0+round; i < m-1; i++) {
+        //             if (count < tot) {
+        //                 el = matrix[i][n-1-round]
+        //                 spiralArr.push(el)
+        //                 count++
+        //                 console.log(el);
+        //             }
+        //             else {
+        //                 break;
+        //             }
+        //         }
+
+        //         console.log('R to L');
+        //         for (j = n-1; j > 0+round ; j--) {
+        //             if (count < tot) {
+        //                 el = matrix[m-1][j]
+        //                 spiralArr.push(el)
+        //                 count++
+        //                 console.log(el);
+        //             }
+        //             else {
+        //                 break;
+        //             }
+        //         }
+                
+        //         console.log('B to T');
+        //         for (i = m-1; i > 1+round; i--) {
+        //             if (count < tot) {
+        //                 el = matrix[i][0]
+        //                 spiralArr.push(el)
+        //                 count++
+        //                 console.log(el);
+        //             }
+        //             else {
+        //                 break;
+        //             }
+        //         }
+        //         round++;
+        //     }
+        //    return spiralArr;
+        // };
+
+        // Solution from LeetCode
+        // let res = new Array()
+
+        // if (matrix.length == 0) {
+        //     return res;
+        // }
+
+        // let rowBegin = 0;
+        // let rowEnd = matrix.length-1;
+        // let colBegin = 0;
+        // let colEnd = matrix[0].length - 1;
+
+        // while (rowBegin <= rowEnd && colBegin <= colEnd) {
+        //     // Traverse Right
+        //     for (let j = colBegin; j <= colEnd; j ++) {
+        //         res.push(matrix[rowBegin][j]);
+        //     }
+        //     rowBegin++;
+            
+        //     // Traverse Down
+        //     for (let j = rowBegin; j <= rowEnd; j ++) {
+        //         res.push(matrix[j][colEnd]);
+        //     }
+        //     colEnd--;
+            
+        //     if (rowBegin <= rowEnd) {
+        //         // Traverse Left
+        //         for (let j = colEnd; j >= colBegin; j --) {
+        //             res.push(matrix[rowEnd][j]);
+        //         }
+        //     }
+        //     rowEnd--;
+            
+        //     if (colBegin <= colEnd) {
+        //         // Traver Up
+        //         for (let j = rowEnd; j >= rowBegin; j --) {
+        //             res.push(matrix[j][colBegin]);
+        //         }
+        //     }
+        //     colBegin ++;
+        // }
+
+        // return res;
+    </script>
+
+</body>
+
+</html>

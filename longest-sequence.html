@@ -1,0 +1,54 @@
+<script>
+    /**
+ * @param {number[]} nums
+ * @return {number}
+ */
+    var longestConsecutive = function (nums) {
+      
+        let nums2 = nums.sort(function (a, b) { return a - b })
+        if(nums.length == 0) return 0;
+        let count = 1, longSeq = 1
+        for (let i = 0; i < nums.length - 1; i++) {
+            // increment till a consecutive number is found
+            if (nums2[i + 1] - nums2[i] === 1) {
+                count++;
+            }
+            // if the number is same continue with loop but don't increment the count
+            else if (nums2[i + 1] - nums2[i] === 0) {
+                continue;
+            }
+            // a consecutive number is missed
+            else {
+                if (count > longSeq) {
+                    longSeq = count
+                }
+                count = 1
+            }
+        }
+        // if the last count was greater than longSeq
+        if (count > longSeq) {
+            longSeq = count
+        }
+        return longSeq
+
+    };
+
+    console.log(longestConsecutive([1,2,0,1,1,2]))
+
+    // Solution from LeetCode
+    // let set = new Set();
+    //     for(const n of nums) {
+    //         set.add(n);
+    //     }
+    //     let max = 0;
+    //     for(let n of set) {
+    //         if(!set.has(n-1)) {
+    //             let count = 0;
+    //             while(set.has(n++)) {
+    //                 count++;
+    //             }
+    //             max = Math.max(count, max);
+    //         }
+    //     }
+    //     return max;
+</script>

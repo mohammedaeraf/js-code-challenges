@@ -1,0 +1,37 @@
+<html>
+
+<body>
+    <pre>
+        Given an integer array nums of length n where all the integers of nums are in the range [1, n] and each integer appears once or twice, 
+        return an array of all the integers that appears twice.
+        You must write an algorithm that runs in O(n) time and uses only constant extra space.
+    </pre>
+    <hr>
+    <script>
+        /**
+         * @param {number[]} nums
+         * @return {number[]}
+         */
+
+        var findDuplicates = function (nums) {
+            let nums2 = nums.sort(function(a, b){return a - b});
+            let duplicates = new Array();
+            for (i = 0; i < nums.length-1; i++) { 
+                j = i + 1;
+                if(nums2[i] === nums2[j]) {
+                    duplicates.push(nums2[i]);
+                    i++;
+                }
+            }
+            return duplicates;
+
+        };
+        var nums = [1,1,2];
+        var duplicates = findDuplicates(nums);
+        console.log(duplicates)
+
+    </script>
+
+</body>
+
+</html>
